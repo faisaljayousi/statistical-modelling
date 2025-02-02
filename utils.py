@@ -12,7 +12,6 @@ def generate_toc(notebook_path):
             lines = cell.source.split('\n')
             for line in lines:
                 if line.startswith('#'):
-                    # Count the number of '#' to determine the level
                     level = line.count('#')
                     title = line.strip('#').strip()
                     toc.append((level, title))
@@ -23,9 +22,3 @@ def generate_toc(notebook_path):
         toc_md += f"{indent}- [{title}](#{title.lower().replace(' ', '-')})\n"
 
     return toc_md
-
-
-if __name__ == '__main__':
-    notebook_path = 'notebooks/mixed_topics/ornstein_uhlenbeck_estimation.ipynb'
-    toc = generate_toc(notebook_path)
-    print(toc)
